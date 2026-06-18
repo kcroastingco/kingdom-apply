@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<!--
+  KINGDOM COFFEE ROASTING CO. — Application for Employment
+  STANDALONE PAGE for apply.kcroastingco.com (hosted on GitHub Pages, like the training site).
+
+  HOW THIS GETS LIVE (see README.md for full steps):
+    1. Push this folder to a GitHub repo, enable GitHub Pages, set custom domain apply.kcroastingco.com.
+    2. The CNAME file in this folder tells GitHub Pages the domain. Add the matching DNS record at your registrar.
+
+  ONE THING TO FILL IN before applications send:
+    - Get a free Web3Forms access key at https://web3forms.com (enter careers@kcroastingco.com — that's where
+      applications are delivered). Paste the key into the ACCESS_KEY line near the bottom of this file.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply | KINGDOM Coffee Roasting Co.</title>
+<meta name="description" content="Apply to join the team at KINGDOM Coffee Roasting Co. — Cameron, Chillicothe, and St. Joseph, Missouri.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Apply | KINGDOM Coffee Roasting Co.">
+<meta property="og:description" content="Become a KINGDOM Builder. Apply today.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF6EE;
+    --cream-card:#FFFFFF;
+    --sage:#7C8B6F;
+    --sage-dark:#5F6E54;
+    --brown:#4A4031;
+    --brown-soft:#6B6150;
+    --amber:#C8932A;
+    --amber-dark:#A9791E;
+    --line:#E4DCC9;
+    --error:#B0463C;
+    --radius:6px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--brown);
+    font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 18px 64px;}
+
+  /* ---------- Header ---------- */
+  .masthead{
+    text-align:center;
+    padding:44px 18px 36px;
+  }
+  .masthead img{max-width:190px;height:auto;margin:0 auto 18px;display:block;}
+  .masthead h1{
+    font-family:'Oswald',sans-serif;
+    font-weight:300;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    font-size:clamp(28px,5vw,44px);
+    color:var(--brown);
+    margin:0;
+    line-height:1.1;
+  }
+  .masthead .sub{
+    font-family:'Oswald',sans-serif;
+    font-weight:300;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:14px;
+    color:var(--amber-dark);
+    margin-top:10px;
+  }
+  .verse{
+    font-style:italic;
+    color:var(--brown-soft);
+    margin-top:14px;
+    font-size:15px;
+  }
+
+  /* ---------- Sections ---------- */
+  .section{
+    background:var(--cream-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 26px 30px;
+    margin-bottom:22px;
+    box-shadow:0 1px 2px rgba(74,64,49,.04);
+  }
+  .section > h2{
+    font-family:'Oswald',sans-serif;
+    font-weight:400;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:22px;
+    color:var(--sage-dark);
+    margin:0 0 4px;
+  }
+  .section > h2 .num{color:var(--amber);font-weight:500;margin-right:10px;}
+  .section .lead{color:var(--brown-soft);font-size:14.5px;margin:0 0 22px;}
+  .subhead{
+    font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:.06em;
+    text-transform:uppercase;font-size:15px;color:var(--brown);
+    margin:26px 0 12px;padding-top:18px;border-top:1px dashed var(--line);
+  }
+  .subhead:first-of-type{border-top:none;padding-top:0;margin-top:6px;}
+
+  /* ---------- Fields ---------- */
+  .grid{display:grid;gap:16px 18px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:1fr 1fr 1fr;}
+  .g4{grid-template-columns:1.4fr .7fr 1fr 1fr;}
+  @media(max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;}
+  .field.span2{grid-column:1/-1;}
+  label{
+    font-size:13px;font-weight:700;letter-spacing:.02em;
+    color:var(--brown);margin-bottom:6px;
+  }
+  label .req{color:var(--amber-dark);margin-left:3px;}
+  label .hint{font-weight:400;color:var(--brown-soft);font-size:12px;}
+  input[type=text],input[type=email],input[type=tel],input[type=date],
+  input[type=number],select,textarea{
+    font-family:'Nunito Sans',sans-serif;font-size:16px;color:var(--brown);
+    background:#FCFAF4;border:1px solid var(--line);border-radius:var(--radius);
+    padding:11px 12px;width:100%;transition:border-color .15s,box-shadow .15s;
+  }
+  textarea{resize:vertical;min-height:90px;}
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--sage);
+    box-shadow:0 0 0 3px rgba(124,139,111,.18);
+  }
+  ::placeholder{color:#A89F8C;}
+  .field-note{font-size:12px;color:var(--brown-soft);margin-top:5px;}
+
+  /* ---------- Choice groups ---------- */
+  .choices{display:flex;flex-wrap:wrap;gap:10px;}
+  .choices.stack{flex-direction:column;}
+  .choice{
+    display:flex;align-items:center;gap:9px;cursor:pointer;
+    border:1px solid var(--line);background:#FCFAF4;border-radius:var(--radius);
+    padding:10px 14px;font-size:14.5px;transition:border-color .15s,background .15s;
+    flex:0 0 auto;
+  }
+  .choice:hover{border-color:var(--sage);}
+  .choice input{accent-color:var(--sage);width:17px;height:17px;margin:0;cursor:pointer;}
+  .choice.full{flex:1 1 100%;}
+  .inline-yn{display:flex;gap:10px;}
+
+  /* ---------- Availability grid ---------- */
+  .avail-grid{display:grid;grid-template-columns:auto 1fr 1fr;gap:10px 12px;align-items:center;}
+  .avail-day{font-size:14px;font-weight:700;color:var(--brown);}
+  .avail-cell{
+    display:flex;align-items:center;gap:8px;cursor:pointer;
+    border:1px solid var(--line);background:#FCFAF4;border-radius:var(--radius);
+    padding:9px 14px;font-size:14.5px;transition:border-color .15s;
+  }
+  .avail-cell:hover{border-color:var(--sage);}
+  .avail-cell input{accent-color:var(--sage);width:17px;height:17px;margin:0;cursor:pointer;}
+  @media(max-width:640px){
+    .avail-grid{grid-template-columns:1fr 1fr;column-gap:10px;row-gap:8px;}
+    .avail-day{grid-column:1/-1;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);}
+  }
+
+  fieldset{border:none;margin:0;padding:0;}
+  fieldset > .legend{
+    font-size:13px;font-weight:700;color:var(--brown);margin-bottom:8px;display:block;
+  }
+  fieldset .legend .req{color:var(--amber-dark);margin-left:3px;}
+
+  /* ---------- Resume ---------- */
+  .file-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  input[type=file]{font-family:'Nunito Sans',sans-serif;font-size:14px;color:var(--brown-soft);}
+
+  /* ---------- Submit ---------- */
+  .actions{text-align:center;margin-top:8px;}
+  button[type=submit]{
+    font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:.14em;
+    text-transform:uppercase;font-size:17px;color:#fff;background:var(--sage-dark);
+    border:none;border-radius:var(--radius);padding:16px 56px;cursor:pointer;
+    transition:background .15s,transform .05s;
+  }
+  button[type=submit]:hover{background:var(--brown);}
+  button[type=submit]:active{transform:translateY(1px);}
+  button[type=submit]:disabled{opacity:.6;cursor:default;}
+  .privacy{font-size:12.5px;color:var(--brown-soft);margin-top:16px;}
+
+  /* ---------- Status messages ---------- */
+  .msg{display:none;border-radius:var(--radius);padding:22px 24px;margin-bottom:22px;font-size:15.5px;}
+  .msg.ok{display:block;background:#EEF2E7;border:1px solid var(--sage);color:var(--sage-dark);}
+  .msg.err{display:block;background:#F8ECEA;border:1px solid var(--error);color:var(--error);}
+  .msg h3{font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px;font-size:19px;}
+  .msg a{color:inherit;font-weight:700;}
+
+  /* ---------- Footer ---------- */
+  .pagefoot{text-align:center;color:var(--brown-soft);font-size:13px;padding:8px 18px 0;}
+  .pagefoot a{color:var(--sage-dark);text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <img src="https://www.jotform.com/uploads/kennethnburnett/form_files/Color%20logo%20-%20no%20background.60afdefac6eb67.64535756.png" alt="KINGDOM Coffee Roasting Co.">
+    <h1>Application for Employment</h1>
+    <div class="sub">KINGDOM Coffee Roasting Co.</div>
+    <div class="verse">"We love because He first loved us." &mdash; 1 John 4:19</div>
+  </div>
+
+  <div id="okMsg" class="msg ok">
+    <h3>Application received</h3>
+    Thank you for applying to KINGDOM Coffee. We've received your application and will be in touch. Welcome &mdash; we're glad you're here.
+  </div>
+  <div id="errMsg" class="msg err">
+    <h3>Something went wrong</h3>
+    We couldn't submit your application just now. Please try again in a moment, or email it directly to <a href="mailto:careers@kcroastingco.com">careers@kcroastingco.com</a>.
+  </div>
+
+  <form id="appForm" novalidate>
+    <!-- Web3Forms config -->
+    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+    <input type="hidden" name="subject" value="New KINGDOM Coffee Application">
+    <input type="hidden" name="from_name" value="KINGDOM Coffee Application">
+    <!-- PRO only: also send a copy to a second inbox. Uncomment once on Web3Forms Pro. -->
+    <!-- <input type="hidden" name="ccemail" value="ken@kcroastingco.com"> -->
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+    <!-- ===== APPLICANT INFORMATION ===== -->
+    <div class="section">
+      <h2><span class="num">1</span>Applicant Information</h2>
+
+      <div class="grid g3" style="margin-bottom:16px;">
+        <div class="field">
+          <label>First Name<span class="req">*</span></label>
+          <input type="text" name="First Name" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label>Middle Initial</label>
+          <input type="text" name="Middle Initial" maxlength="3">
+        </div>
+        <div class="field">
+          <label>Last Name<span class="req">*</span></label>
+          <input type="text" name="Last Name" autocomplete="family-name" required>
+        </div>
+      </div>
+
+      <div class="grid g2">
+        <div class="field span2">
+          <label>Street Address<span class="req">*</span></label>
+          <input type="text" name="Street Address" autocomplete="address-line1" required>
+        </div>
+        <div class="field span2">
+          <label>Street Address Line 2</label>
+          <input type="text" name="Street Address Line 2" autocomplete="address-line2">
+        </div>
+        <div class="field">
+          <label>City<span class="req">*</span></label>
+          <input type="text" name="City" autocomplete="address-level2" required>
+        </div>
+        <div class="field">
+          <label>State / Province<span class="req">*</span></label>
+          <input type="text" name="State / Province" autocomplete="address-level1" required>
+        </div>
+        <div class="field">
+          <label>Postal / Zip Code<span class="req">*</span></label>
+          <input type="text" name="Zip Code" autocomplete="postal-code" required>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:16px;">
+        <div class="field">
+          <label>E-mail<span class="req">*</span></label>
+          <input type="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label>Phone Number<span class="req">*</span></label>
+          <input type="tel" name="Phone Number" autocomplete="tel" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== POSITION & AVAILABILITY ===== -->
+    <div class="section">
+      <h2><span class="num">2</span>Position &amp; Availability</h2>
+
+      <fieldset style="margin-bottom:22px;">
+        <span class="legend">Location<span class="req">*</span></span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="Location" value="Cameron, MO" required> Cameron, MO</label>
+          <label class="choice"><input type="radio" name="Location" value="Chillicothe, MO"> Chillicothe, MO</label>
+          <label class="choice"><input type="radio" name="Location" value="St. Joseph, MO"> St. Joseph, MO</label>
+        </div>
+      </fieldset>
+
+      <fieldset style="margin-bottom:22px;">
+        <span class="legend">Position<span class="req">*</span></span>
+        <div class="choices stack">
+          <label class="choice full"><input type="radio" name="Position" value="KINGDOM Builder" required> KINGDOM Builder</label>
+          <label class="choice full"><input type="radio" name="Position" value="Manager"> Manager</label>
+          <label class="choice full"><input type="radio" name="Position" value="Operations Manager"> Operations Manager</label>
+          <label class="choice full"><input type="radio" name="Position" value="Multi-Unit Leader"> Multi-Unit Leader</label>
+          <label class="choice full"><input type="radio" name="Position" value="Local Community Ambassador"> Local Community Ambassador</label>
+          <label class="choice full"><input type="radio" name="Position" value="Roasting Facility Director"> Roasting Facility Director</label>
+        </div>
+      </fieldset>
+
+      <div class="field" style="margin-bottom:22px;">
+        <label>Available start date<span class="req">*</span></label>
+        <input type="date" name="Available start date" required style="max-width:240px;">
+      </div>
+
+      <fieldset>
+        <span class="legend">Availability &mdash; check the shifts you can work <span class="hint" style="font-weight:400;">(Saturdays &amp; Sundays are required)</span><span class="req">*</span></span>
+        <div class="avail-grid">
+          <div class="avail-day">Monday</div>
+          <label class="avail-cell"><input type="checkbox" name="Monday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Monday" value="Afternoon"> Afternoon</label>
+
+          <div class="avail-day">Tuesday</div>
+          <label class="avail-cell"><input type="checkbox" name="Tuesday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Tuesday" value="Afternoon"> Afternoon</label>
+
+          <div class="avail-day">Wednesday</div>
+          <label class="avail-cell"><input type="checkbox" name="Wednesday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Wednesday" value="Afternoon"> Afternoon</label>
+
+          <div class="avail-day">Thursday</div>
+          <label class="avail-cell"><input type="checkbox" name="Thursday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Thursday" value="Afternoon"> Afternoon</label>
+
+          <div class="avail-day">Friday</div>
+          <label class="avail-cell"><input type="checkbox" name="Friday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Friday" value="Afternoon"> Afternoon</label>
+
+          <div class="avail-day">Saturday</div>
+          <label class="avail-cell"><input type="checkbox" name="Saturday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Saturday" value="Afternoon"> Afternoon</label>
+
+          <div class="avail-day">Sunday</div>
+          <label class="avail-cell"><input type="checkbox" name="Sunday" value="Morning"> Morning</label>
+          <label class="avail-cell"><input type="checkbox" name="Sunday" value="Afternoon"> Afternoon</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- ===== ELIGIBILITY ===== -->
+    <div class="section">
+      <h2><span class="num">3</span>Eligibility</h2>
+
+      <fieldset style="margin-bottom:20px;">
+        <span class="legend">Have you ever been convicted of any violation of the law? (Exclude traffic violations)<span class="req">*</span></span>
+        <p class="field-note" style="margin:0 0 10px;">A conviction will not necessarily disqualify an applicant from the position sought.</p>
+        <div class="inline-yn">
+          <label class="choice"><input type="radio" name="Convicted" value="Yes" required> Yes</label>
+          <label class="choice"><input type="radio" name="Convicted" value="No"> No</label>
+        </div>
+      </fieldset>
+
+      <div class="field" style="margin-bottom:22px;">
+        <label>If yes, explain:</label>
+        <textarea name="Conviction Explanation"></textarea>
+      </div>
+
+      <fieldset>
+        <span class="legend">Are you 18 years old?<span class="req">*</span></span>
+        <div class="inline-yn">
+          <label class="choice"><input type="radio" name="Is 18" value="Yes" required> Yes</label>
+          <label class="choice"><input type="radio" name="Is 18" value="No"> No</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- ===== EMPLOYMENT HISTORY ===== -->
+    <div class="section">
+      <h2><span class="num">4</span>Employment History</h2>
+      <p class="lead">Beginning with your present or most recent experience, account for all employment. You may also attach a résumé below.</p>
+
+      <!-- Employer 1 -->
+      <div class="subhead">Most Recent Employer</div>
+      <div class="grid g2">
+        <div class="field"><label>Name of Employer</label><input type="text" name="Employer 1 Name"></div>
+        <div class="field"><label>Job Title</label><input type="text" name="Employer 1 Job Title"></div>
+        <div class="field span2"><label>Street Address</label><input type="text" name="Employer 1 Street"></div>
+        <div class="field"><label>City</label><input type="text" name="Employer 1 City"></div>
+        <div class="field"><label>State / Province</label><input type="text" name="Employer 1 State"></div>
+        <div class="field"><label>Phone Number</label><input type="tel" name="Employer 1 Phone"></div>
+        <div class="field"><label>Supervisor</label><input type="text" name="Employer 1 Supervisor"></div>
+        <div class="field"><label>Date Started</label><input type="date" name="Employer 1 Date Started"></div>
+        <div class="field"><label>Date Ended</label><input type="date" name="Employer 1 Date Ended"></div>
+        <div class="field span2"><label>Reason for Leaving</label><input type="text" name="Employer 1 Reason for Leaving"></div>
+      </div>
+      <fieldset style="margin-top:14px;">
+        <span class="legend">May we contact your present employer?</span>
+        <div class="inline-yn">
+          <label class="choice"><input type="radio" name="Contact Present Employer" value="Yes"> Yes</label>
+          <label class="choice"><input type="radio" name="Contact Present Employer" value="No"> No</label>
+        </div>
+      </fieldset>
+
+      <!-- Employer 2 -->
+      <div class="subhead">Previous Employer</div>
+      <div class="grid g2">
+        <div class="field"><label>Name of Employer</label><input type="text" name="Employer 2 Name"></div>
+        <div class="field"><label>Job Title</label><input type="text" name="Employer 2 Job Title"></div>
+        <div class="field span2"><label>Street Address</label><input type="text" name="Employer 2 Street"></div>
+        <div class="field"><label>City</label><input type="text" name="Employer 2 City"></div>
+        <div class="field"><label>State / Province</label><input type="text" name="Employer 2 State"></div>
+        <div class="field"><label>Phone Number</label><input type="tel" name="Employer 2 Phone"></div>
+        <div class="field"><label>Supervisor</label><input type="text" name="Employer 2 Supervisor"></div>
+        <div class="field"><label>Date Started</label><input type="date" name="Employer 2 Date Started"></div>
+        <div class="field"><label>Date Ended</label><input type="date" name="Employer 2 Date Ended"></div>
+        <div class="field span2"><label>Reason for Leaving</label><input type="text" name="Employer 2 Reason for Leaving"></div>
+      </div>
+      <fieldset style="margin-top:14px;">
+        <span class="legend">May we contact your former employers?</span>
+        <div class="inline-yn">
+          <label class="choice"><input type="radio" name="Contact Former Employers" value="Yes"> Yes</label>
+          <label class="choice"><input type="radio" name="Contact Former Employers" value="No"> No</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- ===== REFERENCES ===== -->
+    <div class="section">
+      <h2><span class="num">5</span>Personal References</h2>
+
+      <div class="subhead">Reference 1</div>
+      <div class="grid g4">
+        <div class="field"><label>First Name<span class="req">*</span></label><input type="text" name="Ref 1 First Name" required></div>
+        <div class="field"><label>Last Name<span class="req">*</span></label><input type="text" name="Ref 1 Last Name" required></div>
+        <div class="field"><label>Relationship<span class="req">*</span></label><input type="text" name="Ref 1 Relationship" required></div>
+        <div class="field"><label>Phone<span class="req">*</span></label><input type="tel" name="Ref 1 Phone" required></div>
+      </div>
+
+      <div class="subhead">Reference 2</div>
+      <div class="grid g4">
+        <div class="field"><label>First Name<span class="req">*</span></label><input type="text" name="Ref 2 First Name" required></div>
+        <div class="field"><label>Last Name<span class="req">*</span></label><input type="text" name="Ref 2 Last Name" required></div>
+        <div class="field"><label>Relationship<span class="req">*</span></label><input type="text" name="Ref 2 Relationship" required></div>
+        <div class="field"><label>Phone<span class="req">*</span></label><input type="tel" name="Ref 2 Phone" required></div>
+      </div>
+    </div>
+
+    <!-- ===== RESUME ===== -->
+    <div class="section">
+      <h2><span class="num">6</span>Résumé</h2>
+      <p class="lead">Optional. PDF, Word, or image &mdash; up to 5&nbsp;MB.</p>
+      <div class="file-row">
+        <input type="file" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" id="submitBtn">Submit Application</button>
+      <p class="privacy">By submitting, you confirm the information above is true and complete to the best of your knowledge.</p>
+    </div>
+  </form>
+
+  <p class="pagefoot">KINGDOM Coffee Roasting Co. &nbsp;&middot;&nbsp; Cameron &middot; Chillicothe &middot; St. Joseph, MO &nbsp;&middot;&nbsp; <a href="https://kcroastingco.com">kcroastingco.com</a></p>
+</div>
+
+<script>
+(function(){
+  var ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY"; // <-- paste your Web3Forms key here
+
+  var form = document.getElementById('appForm');
+  var btn = document.getElementById('submitBtn');
+  var okMsg = document.getElementById('okMsg');
+  var errMsg = document.getElementById('errMsg');
+
+  function scrollToTop(){
+    try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  function showError(html){
+    if(html){ errMsg.innerHTML = html; }
+    errMsg.style.display = 'block';
+    scrollToTop();
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    okMsg.style.display='none';
+    errMsg.style.display='none';
+
+    // Native HTML5 validation for required fields
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    // Guard: résumé size (Web3Forms free tier caps attachments)
+    var fileInput = form.querySelector('input[type=file]');
+    if(fileInput && fileInput.files.length && fileInput.files[0].size > 5*1024*1024){
+      alert('Your résumé file is larger than 5 MB. Please attach a smaller file or leave it blank.');
+      return;
+    }
+
+    // Make sure the key was set
+    form.querySelector('input[name=access_key]').value = ACCESS_KEY;
+    if(ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY"){
+      showError('<h3>Setup needed</h3>This form needs a Web3Forms access key before it can send. See the note at the top of index.html.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    var data = new FormData(form);
+
+    // 20s safety timeout so a stalled network doesn't hang the button forever
+    var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = controller ? setTimeout(function(){ controller.abort(); }, 20000) : null;
+
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      body:data,
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function(r){ return r.json(); })
+      .then(function(json){
+        if(json && json.success){
+          form.reset();
+          okMsg.style.display='block';
+          form.style.display='none';
+          scrollToTop();
+        }else{
+          showError('<h3>Something went wrong</h3>We couldn\'t submit your application just now. Please try again in a moment, or email it directly to <a href="mailto:careers@kcroastingco.com">careers@kcroastingco.com</a>.');
+        }
+      })
+      .catch(function(){
+        showError('<h3>Connection problem</h3>Your application didn\'t send — this is usually a network hiccup. Please check your connection and try again, or email it to <a href="mailto:careers@kcroastingco.com">careers@kcroastingco.com</a>.');
+      })
+      .finally(function(){
+        if(timer){ clearTimeout(timer); }
+        btn.disabled = false;
+        btn.textContent = 'Submit Application';
+      });
+  });
+})();
+</script>
+</body>
+</html>
